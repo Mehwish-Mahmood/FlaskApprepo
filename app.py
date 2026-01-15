@@ -9,8 +9,8 @@ def home():
   study_hours = "" 
   attendance = "" 
   if request.method == "POST": 
-    study_hours = float(request.form["study_hours"]) 
-    attendance = float(request.form["attendance"]) 
+    study_hours = request.form["study_hours"] 
+    attendance = request.form["attendance"] 
   pred = model.predict(np.array([[float(study_hours),float(attendance)]]))[0] 
   prediction = "PASS" if pred == 1 else "FAIL" 
   return render_template( "index.html", prediction=prediction, study_hours=study_hours,attendance=attendance) 
